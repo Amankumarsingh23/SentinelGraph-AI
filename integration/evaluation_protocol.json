@@ -1,0 +1,65 @@
+{
+  "protocol_version": "session25-development-candidate-v1",
+  "status": "candidate_plan_not_final_model_approval",
+  "final_model_selection_approved": false,
+  "reserved_test_evaluated": false,
+  "execute_reserved_test": false,
+  "candidate_model": {
+    "name": "AllFive",
+    "sha256": "4738766c01b72de4b113d922f5236a9f7d979286b2994ff854cce99e7ddd44ed",
+    "training": "Existing Session 20 fitted artifact: latest 50000 train targets, 400 trees, depth 6, learning rate 0.05, seed 42, two CPU threads; no refit in Session 25",
+    "selection_scope": "serving demonstration baseline; not a proven final research winner against a rich current-only control"
+  },
+  "feature_contract_version": "session22-v1",
+  "features": [
+    "TransactionAmt",
+    "graph_card_prior_degree",
+    "graph_product_prior_degree",
+    "graph_card_product_prior_count",
+    "graph_card_distinct_products"
+  ],
+  "preprocessing": "raw float64 numerical values; infinity -> NaN; native CatBoost missing handling; no clipping, scaling or log transform",
+  "metrics": {
+    "primary": "average_precision_score; not trapezoidal PR-AUC",
+    "secondary": ["ROC-AUC", "Precision@100", "Recall@100", "raw-score Brier", "illustrative no-alert cost proxy", "scoring latency", "five chronological block diagnostics"],
+    "top_k": 100,
+    "ranking": "model score descending, TransactionID ascending for ties",
+    "zero_positive_blocks": "AP/recall unavailable; report row and fraud counts explicitly",
+    "report_all_results": true
+  },
+  "decision_policy": null,
+  "score_type": "uncalibrated_model_score",
+  "cost_diagnostic": {
+    "policy": "alert none; comparison baseline only, not a deployed fraud decision policy",
+    "formula": "sum(amount of missed fraud) + 200 * false positives",
+    "false_positive_cost": 200,
+    "missed_fraud_loss": "full recorded transaction amount",
+    "caught_fraud_residual_cost": 0,
+    "financial_loss_validated": false,
+    "optimize_on_test": false
+  },
+  "chronological_protocol": {
+    "targets": "reserved chronological test interval, only in a separately authorized finalization workflow",
+    "reference_boundaries": "use the existing original chronological splits; do not inspect test to choose windows",
+    "allowed_history": "all earlier unlabeled raw train/validation observations and, under the frozen online-style protocol, earlier test events",
+    "strict_time_rule": "history TransactionDT < target TransactionDT",
+    "equal_time_rule": "read every event in a timestamp group before committing any event from that group",
+    "tie_breaking": "TransactionID may break ranking/display ties; never creates earlier history among equal-time peers",
+    "label_use": "never build features from target labels; join final labels only after predictions and policy choices are fixed",
+    "duplicates_and_late_events": "reject duplicate IDs; a live late-event/watermark and retry-state policy is not implemented"
+  },
+  "remaining_before_final_test": [
+    "Explicitly approve final model selection and evaluation plan using development evidence only",
+    "Implement and independently verify the reserved-interval feature construction and label-isolated scoring path without first tuning on its outcomes",
+    "Freeze the final candidate release and operational policy or explicit no-policy scope before any test scoring",
+    "Run one planned evaluation, report failures and limits, and do not iterate on test outcomes"
+  ],
+  "limitations": [
+    "The API accepts precomputed features and is not a trusted live feature store",
+    "Validation has repeatedly informed development choices",
+    "Early full-dataset EDA exposed aggregate test-label statistics; do not claim the project has a pristine untouched test history",
+    "Session 20 compared graph features with amount only, not a competitive rich current-only control",
+    "Retrospective components do not establish real identities, intent or inference-time coordination",
+    "Original training code revision was not recorded; Session 21 provenance was registered afterward"
+  ]
+}

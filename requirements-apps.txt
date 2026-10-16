@@ -1,0 +1,5 @@
+# Optional local applications/private integration, without Windows-only closure pins.
+-r requirements-public.txt
+mlflow==3.17.1
+streamlit==1.66.0
+uvicorn==0.54.0

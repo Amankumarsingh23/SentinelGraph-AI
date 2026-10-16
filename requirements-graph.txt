@@ -1,0 +1,20 @@
+# Session 14: installed Windows CPU graph-learning environment.
+-r requirements-behavioral.txt
+torch-geometric==2.8.1
+aiohttp==3.14.5
+aiohappyeyeballs==2.7.1
+aiosignal==1.4.0
+attrs==26.1.0
+frozenlist==1.8.0
+multidict==7.1.0
+propcache==0.5.4
+yarl==1.25.1
+xxhash==4.0.1
+psutil==7.2.2
+requests==2.34.2
+charset-normalizer==3.5.2
+idna==3.20
+urllib3==2.8.0
+certifi==2026.7.22
+tqdm==4.70.1
+colorama==0.4.6

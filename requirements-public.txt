@@ -1,0 +1,16 @@
+# Artifact-free tests: CPU, Python 3.13, Windows/Linux target.
+# A portable direct-dependency set, separate from historical Windows snapshots.
+--extra-index-url https://download.pytorch.org/whl/cpu
+-c constraints-public.txt
+numpy==2.5.3
+pandas==3.0.6
+scipy==1.18.1
+scikit-learn==1.9.1
+networkx==3.6.1
+catboost==1.2.10
+torch==2.14.1+cpu
+torch-geometric==2.8.1
+fastapi==0.143.3
+pydantic==2.14.1
+httpx==0.28.1
+pytest==9.1.1

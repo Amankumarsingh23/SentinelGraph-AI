@@ -1,0 +1,40 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+data/
+outputs/
+.env
+kaggle.json
+catboost_info/
+processed_transactions.csv
+
+# Private, dataset-derived frozen evidence. Preserve locally; never publish.
+/tests/fixtures/session22_golden.json
+/tests/fixtures/private/
+
+# Publication checks have their own local record, never overwrite Session 26.
+/publication/*.local.json
+/publication/*.local.log
+/publication/*.local.xml
+
+# Local credentials, environments, caches and fitted artifacts.
+.env.*
+!.env.example
+*.pem
+*.key
+.venv-*/
+venv/
+*.cbm
+*.pt
+*.pth
+*.joblib
+*.pkl
+*.sqlite
+*.sqlite3
+*.db
+mlruns/
+mlartifacts/
+.ipynb_checkpoints/
+# Optional personal practice notebook, not part of the public source snapshot.
+/practice.ipynb
